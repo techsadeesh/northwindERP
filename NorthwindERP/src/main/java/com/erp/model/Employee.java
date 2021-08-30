@@ -5,11 +5,29 @@ public class Employee {
 	private String name;
 	private String department;
 	private String designation;
+	
+	public Employee(int id, String name, String department, String designation, String mobile, String email) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.department = department;
+		this.designation = designation;
+		this.mobile = mobile;
+		this.email = email;
+	}
+
+
 	private String mobile;
 	private String email;
 
+
+
 	public int getId() {
 		return id;
+	}
+
+	public Employee() {
+		super();
 	}
 
 	public void setId(int id) {

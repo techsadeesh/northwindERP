@@ -3,6 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
 <title>Home page</title>
+
+<link rel="stylesheet" href="mystyle.css">
 </head>
 <p align="center"><font size="6" color="#008000">North-Wind Trading Company </font></p>
 <hr>
