@@ -1,4 +1,9 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page isELIgnored="false"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
 
 <html>
 
@@ -53,52 +58,57 @@ tr:nth-child(odd) {
 
 	</p>
 
-
-	<form method="POST" action="--WEBBOT-SELF--">
-
-
-		<c:if test="${not empty lists}">
-
-			<c:forEach var="listValue" items="${lists}">
+	<form method="POST" action="/update">
 
 
 
 
 
 
+
+
+
+		<c:if test="${not empty employee_detail}">
+
+			<c:forEach var="listValue" items="${employee_detail}">
 
 				<table width="385">
 					<tr>
 						<td width="186">Name</td>
-						<td><input type="text" name="T1" size="20"
-							value=<c:out value="${listValue.id}"/>></td>
+						<td><input type="text" name="emp_id" size="20"
+							value=<c:out value="${listValue.id}"  />></td>
 					</tr>
 					<tr>
 						<td width="186">Name</td>
-						<td><input type="text" name="T1" size="20"
+						<td><input type="text" name="name" size="20"
 							value=<c:out value="${listValue.name}" />></td>
 					</tr>
 					<tr>
 						<td width="186">Department</td>
-						<td><input type="text" name="T1" size="20"
+						<td><input type="text" name="department" size="20"
 							value=<c:out value="${listValue.department}" />></td>
 					</tr>
 					<tr>
 						<td width="186">Designation</td>
-						<td><input type="text" name="T1" size="20"
+						<td><input type="text" name="designation" size="20"
 							value=<c:out value="${listValue.designation}" />></td>
 					</tr>
 					<tr>
 						<td width="186">Email</td>
-						<td><input type="text" name="T1" size="20"
+						<td><input type="text" name="email" size="20"
 							value=<c:out value="${listValue.email}" />></td>
 					</tr>
 					<tr>
 						<td width="186">mobile</td>
-						<td><input type="text" name="T1" size="20"
+						<td><input type="text" name="mobile" size="20"
 							value=<c:out value="${listValue.mobile}" />></td>
 					</tr>
 					<tr>
+
+
+
+
+
 
 
 
@@ -124,16 +134,9 @@ tr:nth-child(odd) {
 
 
 
-						
-
 
 					</tr>
 				</table>
-
-
-		
-
-
 	</form>
 
 

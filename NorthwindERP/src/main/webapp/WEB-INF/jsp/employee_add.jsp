@@ -15,7 +15,7 @@
 <body>
 <p align="right"><a href="home">Home</a><br>
 
-<form method="POST" action="addItem">
+<form method="POST" action="insertEmployee">
 	<div align="center">
 	<table border="0" width="25%" style="border-collapse: collapse">
 		<tr>
@@ -25,10 +25,12 @@
 		<tr>
 			<td>Name</td>
 			<td width="148"><input type="text" name="name" size="20"></td>
+			
 		</tr>
 		<tr>
 			<td>Department</td>
 			<td width="148"><input type="text" name="department" size="20"></td>
+			
 		</tr>
 		<tr>
 			<td>Designation</td>

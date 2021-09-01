@@ -5,6 +5,9 @@ public class Employee {
 	private String name;
 	private String department;
 	private String designation;
+	private String mobile;
+	private String email;
+
 	
 	public Employee(int id, String name, String department, String designation, String mobile, String email) {
 		super();
@@ -17,9 +20,7 @@ public class Employee {
 	}
 
 
-	private String mobile;
-	private String email;
-
+	
 
 
 	public int getId() {

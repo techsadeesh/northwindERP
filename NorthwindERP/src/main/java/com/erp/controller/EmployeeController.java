@@ -1,12 +1,11 @@
 package com.erp.controller;
 
+import com.erp.dao.EmployeeDao;
+import com.erp.dao.ItemRepository;
 import com.erp.model.Employee;
-import com.erp.repo.ItemRepository;
-//import com.onlinetutorialspoint.model.Item;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -20,170 +19,150 @@ import java.util.List;
 public class EmployeeController {
 	@Autowired
 	ItemRepository itemRepo;
-	
-	Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
-	@RequestMapping("/addItem")
-    @ResponseBody
-    public String addEmployee(
-    		@RequestParam("emp_id") int emp_id,
-    		@RequestParam("name") String name,
-    		@RequestParam("department") String department,
-    		@RequestParam("designation") String designation,     		
-    		@RequestParam("email") String email,
-    		@RequestParam("mobile") String mobile)
-		
-    
-    {
-        if(itemRepo.addEmployee(emp_id,name,department,designation,email,mobile) >= 1){
-        	
-        	
-            return "Item Added Successfully by sadeesh";
-        }else{
-            return "Something went wrong !";
-        }
-    }
-	
-	
+	@Autowired
+	private EmployeeDao EmployeeDao;
+
+	Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
 	@RequestMapping(value = "/home", method = RequestMethod.GET)
 	public ModelAndView showWelcomePage(ModelMap model) {
-	//	model.put("name", getLoggedinUserName());
-	//	return "welcome1";
-		
-		
+		// model.put("name", getLoggedinUserName());
+		// return "welcome1";
+
 		ModelAndView mv = new ModelAndView();
-	
-		
+
 		mv.setViewName("Home");
 		return mv;
 	}
-	
-	
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView login(ModelMap model) {
-	//	model.put("name", getLoggedinUserName());
-	//	return "welcome1";
-		
-		
-		ModelAndView mv = new ModelAndView();
-	
-		
-		mv.setViewName("login");
-		return mv;
-	}
-	
+	@RequestMapping(value = "/addEmployeeForm", method = RequestMethod.GET)
+	public ModelAndView addEmployeeForm(ModelMap model) {
 
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public ModelAndView loginout(ModelMap model) {
-	//	model.put("name", getLoggedinUserName());
-	//	return "welcome1";
-		
-		
 		ModelAndView mv = new ModelAndView();
-	
-		
-		mv.setViewName("login");
+
+		mv.setViewName("employee_add");
 		return mv;
 	}
-	
-/*
-	@RequestMapping(value = "/add_employee", method = RequestMethod.GET)
-	public ModelAndView AddEmployee(ModelMap model) {
-	//	model.put("name", getLoggedinUserName());
-	//	return "welcome1";
-		
-		
-		ModelAndView mv = new ModelAndView();
-	
-		
-		mv.setViewName("add_employee");
-		return mv;
-	}
-	
-	*/
-	
-	 
-		@RequestMapping(value = "/add_employee", method = RequestMethod.GET)
-		public ModelAndView AddEmployee(ModelMap model) {
-		//	model.put("name", getLoggedinUserName());
-		//	return "welcome1";
-			
-			
-			ModelAndView mv = new ModelAndView();
-		
-			
-			mv.setViewName("add_employee");
-			return mv;
+
+	@RequestMapping("/insertEmployee")
+	@ResponseBody
+	public ModelAndView insertEmployee(@RequestParam("emp_id") int emp_id, @RequestParam("name") String name,
+			@RequestParam("department") String department, @RequestParam("designation") String designation,
+			@RequestParam("email") String email, @RequestParam("mobile") String mobile, ModelAndView mv)
+
+	{
+
+		Employee emp = new Employee();
+		emp.setId(emp_id);
+		emp.setName(name);
+		emp.setDepartment(department);
+		emp.setDesignation(designation);
+		emp.setEmail(email);
+		emp.setMobile(mobile);
+
+		int counter = EmployeeDao.addEmployee(emp);
+
+		if (counter > 0) {
+			mv.addObject("msg", "Student registration successful.");
+		} else {
+			mv.addObject("msg", "Error- check the console log.");
 		}
-		
-		 
-		  @RequestMapping("/ListEmployees")
-		    @ResponseBody
-		    public ModelAndView ListEmployee(){
-			  
-			//  logger.info("Inside ListEmployee");
-		      //  return itemRepo.ListEmployee();
-			  
-			  List<Employee> list = itemRepo.ListEmployee();
-			   //return back to index.jsp
-		        ModelAndView model = new ModelAndView("index");
-		        model.addObject("lists", list);
 
-		        return model;
-			  
-			  
-		    }
+		mv.setViewName("Home");
 
-/*		
-		  @RequestMapping("/EditEmployee")
-		    @ResponseBody
-		    public ModelAndView EditEmployee(@RequestParam("itemId") int itemId){
-			  
-			//  logger.info("Inside ListEmployee");
-		      //  return itemRepo.ListEmployee();
-			  
-		             //Employee = itemRepo.ListEmployee(itemId);
-			
-		        ModelAndView model = new ModelAndView("edit_employee");
-		   //     model.addObject("lists", list);
+		return mv;
 
-		        return model;
-			  
-			  
-		    }
-		  
-	*/	  
-		  
-		  @RequestMapping("/EditEmployee/{id}")
-		    @ResponseBody
-		    public ModelAndView ListEmployee(@PathVariable int id) {
-			  
-			 System.out.println("sadeeshhhhh - "+id);
-			  
-		       ModelAndView m = new ModelAndView("edit_employee");
-		       
-		       List<Employee>  list1 = itemRepo.ListEmployee(id);
-		    
-		     System.out.println( "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"+list1.get(0));
-			       m.addObject("lists", list1);
-			       return m ;
-					  
-		    }
+	}
 
-		  
-		/*  
-		  @RequestMapping("/EmployeeEdit/{id}")
-			public String EditEmployee(@PathVariable int id, Model m) {
-				System.out.println(" sadeesh : Inside EditEmployee Controller id =" + id);
-				Employee Employee = EmpService.EditEmployee(id);
-				m.addAttribute("Employee", Employee);
+	@RequestMapping("/listEmployees")
+	@ResponseBody
+	public ModelAndView listEmployees(ModelAndView model) {
 
-		  */
-		  
-	 
-	
-   
+		logger.info("--------------------Sadeesh Inside listEmployees------------------------------ ");
+		List<Employee> emplist = EmployeeDao.listEmployee();
+
+		model.addObject("listEmployees", emplist);
+		model.setViewName("employees_list");
+
+		return model;
+	}
+
+	@RequestMapping("/EditEmployee/{id}")
+	@ResponseBody
+	public ModelAndView ListEmployee(@PathVariable int id) {
+		logger.info("--------------------Sadeesh Edit Emoployee------------------------------ ");
+
+		System.out.println("sadeeshhhhh - " + id);
+
+		ModelAndView m = new ModelAndView("edit_employee");
+
+		// List<Employee> list1 = itemRepo.ListEmployee(id);
+
+		List<Employee> employee_detail = EmployeeDao.getEmployeeById(id);
+
+		for (int i = 0; i < employee_detail.size(); i++) {
+			System.out.print(employee_detail.get(i) + " ");
+		}
+
+		m.addObject("employee_detail", employee_detail);
+		return m;
+
+	}
+
+	@RequestMapping("/deleteEmployee/{id}")
+	@ResponseBody
+	public ModelAndView deleteEmployee(@PathVariable int id) {
+		logger.info("--------------------Sadeesh delete Emoployee------------------------------ ");
+
+		System.out.println("sadeeshhhhh - " + id);
+
+		ModelAndView m = new ModelAndView("sucess");
+
+		EmployeeDao.deleteEmployee(id);
+
+		// m.addObject("employee_detail", employee_detail);
+		return m;
+
+	}
+
+	// ----------------------------------------------------------Current------------------------------------------------------------
+	// @RequestMapping(value = "/update", method = RequestMethod.POST)
+
+	@RequestMapping("/update")
+	@ResponseBody
+	public ModelAndView updateStudent(@RequestParam("emp_id") int emp_id, @RequestParam("name") String name,
+			@RequestParam("department") String department, @RequestParam("designation") String designation,
+			@RequestParam("email") String email, @RequestParam("mobile") String mobile, ModelAndView mv) {
+		logger.info("--------------------Sadeesh UPDATE Emoployee------------------------------ ");
+		Employee emp = new Employee();
+		emp.setId(emp_id);
+		emp.setName(name);
+		emp.setDepartment(department);
+		emp.setDesignation(designation);
+		emp.setEmail(email);
+		emp.setMobile(mobile);
+		System.out.println(emp.getId());
+		System.out.println(emp.getName());
+
+		/*
+		 * emp.setId(emp_id); emp.setName(name); emp.setDesignation(designation);
+		 * emp.setDepartment(department); emp.setEmail(email); emp.setMobile(mobile);
+		 */
+		int counter = EmployeeDao.updateEmployee(emp);
+
+		if (counter > 0) {
+			mv.addObject("msg", "Student records updated against student id: " + emp.getId());
+		} else {
+			mv.addObject("msg", "Error- check the console log.");
+		}
+
+		mv.setViewName("sucess");
+
+		return mv;
+	}
+
+	// ------------------------------------------------------------NOT
+	// YET-----------------------------------------------------------
+
 }
-

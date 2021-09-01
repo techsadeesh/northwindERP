@@ -20,15 +20,28 @@
 						+ windowHeight + ',left=' + centerWidth + ',top='
 						+ centerHeight);
 	
-		/*
-		newWindow = window.open('/EditEmployee',
-				'mywindow', 'resizable=0,width=' + windowWidth + ',height='
-						+ windowHeight + ',left=' + centerWidth + ',top='
-						+ centerHeight);
-		*/
+		
 		newWindow.divHiding(1);
 		newWindow.focus();
 	}
+	
+	function LoadByName1(windowHeight, windowWidth, val) {
+
+		var centerWidth = (window.screen.width - windowWidth) / 2;
+		var centerHeight = (window.screen.height - windowHeight) / 2;
+	
+		newWindow = window.open('/deleteEmployee/' + val,
+				'mywindow', 'resizable=0,width=' + windowWidth + ',height='
+						+ windowHeight + ',left=' + centerWidth + ',top='
+						+ centerHeight);
+	
+		
+		newWindow.divHiding(1);
+		newWindow.focus();
+	}
+	
+	
+	
 </script>
 
 
@@ -66,9 +79,9 @@
 
 
 
-		<c:if test="${not empty lists}">
+		<c:if test="${not empty listEmployees}">
 
-			<c:forEach var="listValue" items="${lists}">
+			<c:forEach var="listValue" items="${listEmployees}">
 
 
 				<tr>
@@ -80,7 +93,9 @@
 					<td><c:out value="${listValue.mobile}" /></td>
 
 					<td><button	onclick="LoadByName(600,600,'${listValue.id}')">Edit</button> </a></td>
-					<td><button	onclick="LoadByName(600,600,'${listValue.id}')">Delete</button> </a></td>
+					<td><button	onclick="LoadByName1(600,600,'${listValue.id}')">Delete</button> </a></td>
+					
+
 
 				</tr>
 			</c:forEach>

@@ -25,7 +25,91 @@
 
 	</tr>
 	<tr>
+		<td width="178"><a href="addEmployeeForm">AddEmployee</a></td>
+		<td width="205">&nbsp;</td>
+		<td width="208">&nbsp;</td>
+		<td width="149">&nbsp;</td>
+
+	</tr>
+	<tr>
+		<td width="178"><a href="listEmployees">ListEmployee</a></td>
+		<td width="205">&nbsp;</td>
+		<td width="208">&nbsp;</td>
+		<td width="149">&nbsp;</td>
+
+	</tr>
+	<tr>
+		<td width="178"><a href="sdf">ViewEmployee</a></td>
+		<td width="205">&nbsp;</td>
+		<td width="208">&nbsp;</td>
+		<td width="149">&nbsp;</td>
+
+	</tr>
+	<tr>
+		<td width="178"><a href="sdf">DeleteEmployee</a></td>
+		<td width="205">&nbsp;</td>
+		<td width="208">&nbsp;</td>
+		<td width="149">&nbsp;</td>
+
+	</tr>
+	<tr>
+		<td width="178"><a href="sdf">UpdateEmployee</a></td>
+		<td width="205">&nbsp;</td>
+		<td width="208">&nbsp;</td>
+		<td width="149">&nbsp;</td>
+
+	</tr>
+	<tr>
+		<th width="178" align="center"><b>Employee</b></th>
+		<th width="205" align="center">&nbsp;</th>
+		<th width="208" align="center">&nbsp;</th>
+		<th width="149" align="center">&nbsp;</th>
+
+	</tr>
+	<tr>
 		<td width="178"><a href="add_employee">AddEmployee</a></td>
+		<td width="205">&nbsp;</td>
+		<td width="208">&nbsp;</td>
+		<td width="149">&nbsp;</td>
+
+	</tr>
+	<tr>
+		<td width="178"><a href="ListEmployees">ListEmployee</a></td>
+		<td width="205">&nbsp;</td>
+		<td width="208">&nbsp;</td>
+		<td width="149">&nbsp;</td>
+
+	</tr>
+	<tr>
+		<td width="178"><a href="sdf">ViewEmployee</a></td>
+		<td width="205">&nbsp;</td>
+		<td width="208">&nbsp;</td>
+		<td width="149">&nbsp;</td>
+
+	</tr>
+	<tr>
+		<td width="178"><a href="sdf">DeleteEmployee</a></td>
+		<td width="205">&nbsp;</td>
+		<td width="208">&nbsp;</td>
+		<td width="149">&nbsp;</td>
+
+	</tr>
+	<tr>
+		<td width="178"><a href="sdf">UpdateEmployee</a></td>
+		<td width="205">&nbsp;</td>
+		<td width="208">&nbsp;</td>
+		<td width="149">&nbsp;</td>
+
+	</tr>
+	<tr>
+		<th width="178" align="center"><b>Employee</b></th>
+		<th width="205" align="center">&nbsp;</th>
+		<th width="208" align="center">&nbsp;</th>
+		<th width="149" align="center">&nbsp;</th>
+
+	</tr>
+	<tr>
+		<td width="178"><a href="employee_add">AddEmployee</a></td>
 		<td width="205">&nbsp;</td>
 		<td width="208">&nbsp;</td>
 		<td width="149">&nbsp;</td>
